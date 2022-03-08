@@ -34,7 +34,10 @@ public class BaseAction {
     public ActionManager getBelongToManager() {
         return m_belongToManager;
     }
-
+    
+    /// <summary>
+    /// 告诉ActionMgr 当前act已经废弃了
+    /// </summary>
     public void removeSelfFromManager()
     {
         m_belongToManager.removeAction(this);

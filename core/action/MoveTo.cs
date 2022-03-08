@@ -7,14 +7,15 @@
 // 
 //
 using System.Collections;
+using System.Security.Cryptography;
 
 public class MoveTo : BaseAction {
 
-    FixVector3 m_fixv3MoveDistance = new FixVector3(Fix64.Zero, Fix64.Zero, Fix64.Zero);
+    FixVector3 m_fixv3MoveDistance = new FixVector3(Fix64.Zero, Fix64.Zero, Fix64.Zero); //终点减起点得到的向量   也可以理解为三个分量的距离
 
-    Fix64 m_fixMoveTime = Fix64.Zero;
+    Fix64 m_fixMoveTime = Fix64.Zero; //需要移动的时间
 
-    Fix64 m_fixMoveElpaseTime = Fix64.Zero;
+    Fix64 m_fixMoveElpaseTime = Fix64.Zero; //已经移动的时间
 
     FixVector3 m_fixMoveStartPosition = new FixVector3(Fix64.Zero, Fix64.Zero, Fix64.Zero);
 
@@ -33,8 +34,15 @@ public class MoveTo : BaseAction {
             actionOver = true;
         }
 
-        FixVector3 elpaseDistance = new FixVector3(m_fixv3MoveDistance.x * timeScale, m_fixv3MoveDistance.y * timeScale, m_fixv3MoveDistance.z * timeScale);
-        FixVector3 newPosition = new FixVector3(m_fixMoveStartPosition.x + elpaseDistance.x, m_fixMoveStartPosition.y + elpaseDistance.y, m_fixMoveStartPosition.z + elpaseDistance.z);
+        //根据经过的时间 得出比例， 然后根据这个比例乘上距离向量，得到已经走过的距离
+        // FixVector3 elpaseDistance = new FixVector3(m_fixv3MoveDistance.x * timeScale, m_fixv3MoveDistance.y * timeScale, m_fixv3MoveDistance.z * timeScale);
+        FixVector3 elpaseDistance = m_fixv3MoveDistance * timeScale;
+        
+        //起点+ 走过的距离  就是真实的位置
+        // FixVector3 newPosition = new FixVector3(m_fixMoveStartPosition.x + elpaseDistance.x, m_fixMoveStartPosition.y + elpaseDistance.y, m_fixMoveStartPosition.z + elpaseDistance.z);
+        FixVector3 newPosition = m_fixMoveStartPosition + elpaseDistance;
+        
+        //更新最新的位置
         unit.m_fixv3LogicPosition = newPosition;
 
         if (actionOver) {

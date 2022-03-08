@@ -6,27 +6,54 @@
 // 
 // 
 //
+
 using System.Collections;
 
 public class BaseObject : UnityObject
 {
     //移动的action
     protected MoveTo m_movetoAction = null;
-    public MoveTo movetoAction { get { return m_movetoAction; } set { m_movetoAction = value; } }
+
+    public MoveTo movetoAction
+    {
+        get { return m_movetoAction; }
+        set { m_movetoAction = value; }
+    }
 
     //名字
     protected string m_scName = "";
-    public string name { get { return m_scName; } set { m_scName = value; } }
+
+    public string name
+    {
+        get { return m_scName; }
+        set { m_scName = value; }
+    }
 
     //action管理器
     protected ActionManager m_actionManager = null;
-    public ActionManager actionManager { get { return m_actionManager; } set { m_actionManager = value; } }
+
+    public ActionManager actionManager
+    {
+        get { return m_actionManager; }
+        set { m_actionManager = value; }
+    }
 
     protected StateMachine m_statemachine = null;
-    public StateMachine priorAttackTarget { get { return m_statemachine; } set { m_statemachine = value; } }
 
+    public StateMachine priorAttackTarget
+    {
+        get { return m_statemachine; }
+        set { m_statemachine = value; }
+    }
+
+    //无效化
     protected bool m_bUneffect = false;
-    public bool uneffect { get { return m_bUneffect; } set { m_bUneffect = value; } }
+
+    public bool uneffect
+    {
+        get { return m_bUneffect; }
+        set { m_bUneffect = value; }
+    }
 
     public BaseObject()
     {
@@ -34,7 +61,8 @@ public class BaseObject : UnityObject
     }
 
     // Use this for initialization
-    void init () {
+    void init()
+    {
         m_actionManager = new ActionManager();
         GameData.g_actionMainManager.addActionManager(m_actionManager);
     }
@@ -49,7 +77,8 @@ public class BaseObject : UnityObject
     // @return none
     public void moveTo(FixVector3 startPos, FixVector3 endPos, Fix64 time, ActionCallback cb = null)
     {
-        if (null == m_movetoAction) {
+        if (null == m_movetoAction)
+        {
             m_movetoAction = new MoveTo();
             m_movetoAction.init(this, startPos, endPos, time, cb);
             m_actionManager.addAction(m_movetoAction);
@@ -62,11 +91,13 @@ public class BaseObject : UnityObject
     // @param cb 时间到了以后的回调函数
     // @param label 延迟动作对象的标签(用于停止延迟动作)
     // @return none
-    public void delayDo(Fix64 time, ActionCallback cb, string label = null){
+    public void delayDo(Fix64 time, ActionCallback cb, string label = null)
+    {
         DelayDo delaydoAction = new DelayDo();
         delaydoAction.init(time, cb);
 
-        if (null != label) {
+        if (null != label)
+        {
             delaydoAction.setLabel(label);
         }
 
@@ -76,8 +107,10 @@ public class BaseObject : UnityObject
     //- 停止移动
     // 
     // @return none
-    public void stopMove(){
-        if (null != m_movetoAction) {
+    public void stopMove()
+    {
+        if (null != m_movetoAction)
+        {
             m_actionManager.removeAction(m_movetoAction);
 
             m_movetoAction = null;
@@ -88,7 +121,8 @@ public class BaseObject : UnityObject
     // 
     // @param label 要停止的action的label
     // @return none
-    public void stopAction(string label){
+    public void stopAction(string label)
+    {
         m_actionManager.stopAction(label);
     }
 
@@ -96,21 +130,24 @@ public class BaseObject : UnityObject
     // 
     // @param label 要停止的action的类型
     // @return none
-    public void stopActionByName(string type){
+    public void stopActionByName(string type)
+    {
         m_actionManager.stopActionByName(type);
     }
 
     //- 停止所有的action
     // 
     // @return none
-    public void stopAllAction(){
+    public void stopAllAction()
+    {
         m_actionManager.stopAllAction();
     }
 
     //- 清除action管理器
     // 
     // @return none
-    public void killActionManager(){
+    public void killActionManager()
+    {
         m_actionManager.enable = false;
     }
 
@@ -121,13 +158,14 @@ public class BaseObject : UnityObject
     public void checkEvent()
     {
         //释放内存
-        if (m_bKilled) {
+        if (m_bKilled)
+        {
             //停止所有delaydo
             stopActionByName("delaydo");
 
-                //塔
-            if (m_scType == "tower") {
-
+            //塔
+            if (m_scType == "tower")
+            {
                 for (int i = GameData.g_listTower.Count - 1; i >= 0; i--)
                 {
                     if (this == GameData.g_listTower[i])
@@ -136,44 +174,48 @@ public class BaseObject : UnityObject
                         break;
                     }
                 }
-                
             }
             //士兵
-                else if (m_scType == "soldier") {
-                    for (int i = GameData.g_listSoldier.Count - 1; i >= 0; i--)
+            else if (m_scType == "soldier")
+            {
+                for (int i = GameData.g_listSoldier.Count - 1; i >= 0; i--)
+                {
+                    if (this == GameData.g_listSoldier[i])
                     {
-                        if (this == GameData.g_listSoldier[i])
-                        {
-                            GameData.g_listSoldier.Remove(GameData.g_listSoldier[i]);
-                            break;
-                        }
+                        GameData.g_listSoldier.Remove(GameData.g_listSoldier[i]);
+                        break;
                     }
                 }
-                //子弹
-                else if (m_scType == "bullet") {
-                    for (int i = GameData.g_listBullet.Count - 1; i >= 0; i--)
+            }
+            //子弹
+            else if (m_scType == "bullet")
+            {
+                for (int i = GameData.g_listBullet.Count - 1; i >= 0; i--)
+                {
+                    if (this == GameData.g_listBullet[i])
                     {
-                        if (this == GameData.g_listBullet[i])
-                        {
-                            GameData.g_listBullet.Remove(GameData.g_listBullet[i]);
-                            break;
-                        }
+                        GameData.g_listBullet.Remove(GameData.g_listBullet[i]);
+                        break;
                     }
                 }
-                //其它
-                else {
-                    UnityTools.LogError("wrong type : " + m_scType);
-                }
+            }
+            //其它
+            else
+            {
+                UnityTools.LogError("wrong type : " + m_scType);
+            }
 
             destroyGameObject();
         }
-     }
+    }
 
     // - 检测逻辑上是否已经死亡
     // 如果死亡则做对应的一系列处理
     // @return value description.
-    public void checkIsDead(){
-        if (m_bKilled) {
+    public void checkIsDead()
+    {
+        if (m_bKilled)
+        {
             killSelf();
         }
     }
@@ -182,25 +224,29 @@ public class BaseObject : UnityObject
     //
     // @param position 要设置到的位置
     // @return none
-    virtual public void setPosition(FixVector3 position){
+    virtual public void setPosition(FixVector3 position)
+    {
         m_fixv3LogicPosition = position;
     }
 
     // - 获取位置
     //
     // @return 当前逻辑位置
-    public FixVector3 getPosition(){
+    public FixVector3 getPosition()
+    {
         return m_fixv3LogicPosition;
     }
 
     // - 自杀
     //
     // @return none
-    virtual public void killSelf(){
+    public virtual void killSelf()
+    {
         stopAllAction();
         killActionManager();
 
-        if (null != m_statemachine) {
+        if (null != m_statemachine)
+        {
             m_statemachine.exitOldState();
         }
 
@@ -212,15 +258,15 @@ public class BaseObject : UnityObject
     //- 检查状态
     // 在冷却状态结束后检测一下当前状态,以便根据当前状态刷新逻辑
     // @return none
-    virtual public void checkStatue()
+    public virtual void checkStatue()
     {
-
     }
 
     //- 记录最后的位置
     // 
     // @return none.
-    public void recordLastPos(){
+    public void recordLastPos()
+    {
         m_fixv3LastPosition = m_fixv3LogicPosition;
     }
 }

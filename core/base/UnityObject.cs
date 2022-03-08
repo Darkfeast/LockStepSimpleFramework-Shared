@@ -10,13 +10,39 @@
 using UnityEngine;
 #endif
 
+/*
+往事蒙尘在我眉睫之间，                       
+方今重回到江南旧院。                        
+残朽了，岁月刻的牌匾，                       
+叩开回忆之门一问尘缘。                       
+我乘乌篷船翩然过桥亭，                        多年后我又乘船过江南，
+与清明桥上嫣然那个你，                        可清明桥上再无你倩影，
+不经意，相看成了风景。                        未留意，眷顾成了曾经。
+我蘸酒写诗而你误入诗句。                      一道古镇清风长叹了半声。
+                           
+我轻弹古筝歌遍，方知断了的琴弦                 玉笛余音向天阙，流年也沉默封缄，   
+再也唱不出思念。                             为你静敛岁月吊唁。
+你刺绣化梦的蝶，后觉断了的红线                 黛瓦青砖雨不绝，我蒙霜冷彻心间，
+再也绣不出情缘。                             为你倾尽悼念。
+执手昨日疏影西窗前，灯花落尽檐外月一剪，        或许怨天命旁观冷眼，或许问天命总妒良缘，
+棋局与人生，哪个更多劫？                      说莫失莫忘，无常总上演。
+孑然今宵微雨断桥边，往事焚灰你香冢长眠，        天涯一隔两端有多远，怎敌一隔阴阳两相望，
+从此处处烟波，都似你眉眼。                    从此处处苍翠，都似你裙边。
+    
+
+忆江南山悠然水悠然，你眸凝万水眉黛千山，
+待百年与你，共长眠江南。
+忆江南船依然桥依然，与你将前缘再续编撰：
+若有三生一世，再遇你江南。
+*/
+
 using System.Collections;
 
 public class UnityObject
 {
     public string m_scBundle = "";
     public string m_scAsset = "";
-    public string m_scType = "";
+    public string m_scType = ""; // 塔  士兵  子弹
 
     //是否被杀掉了
     public bool m_bKilled = false;
@@ -37,7 +63,7 @@ public class UnityObject
 
     public void createFromPrefab(string path, UnityObject script) {
 #if _CLIENTLOGIC_
-        prefab.create(path, script);
+        Prefab.create(path, script);
 #endif
     }
 

@@ -10,15 +10,16 @@ using System.Collections;
 
 public class DelayDo : BaseAction {
 
-    Fix64 m_fixPlanTime = Fix64.Zero;
+    Fix64 m_fixPlanTime = Fix64.Zero; //延迟时间
     Fix64 m_fixElapseTime = Fix64.Zero;
 
     public override void updateLogic()
     {
         m_fixElapseTime = m_fixElapseTime + GameData.g_fixFrameLen;
 
+        //到达延迟时间后 开始执行回调
         if (m_fixElapseTime >= m_fixPlanTime) {
-            removeSelfFromManager();
+            removeSelfFromManager(); 
 
             if (null != actionCallBackFunction)
             {
