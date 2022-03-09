@@ -21,7 +21,7 @@ public class BulletFactory
     // @param poShootStartPosition 子弹生成的位置
     // @param poShootEndPosition 子弹要到达的位置
     // @return none
-    public void createBullet(LiveObject src, LiveObject dest, FixVector3 poShootStartPosition, FixVector3 poShootEndPosition)
+    public BaseBullet createBullet(LiveObject src, LiveObject dest, FixVector3 poShootStartPosition, FixVector3 poShootEndPosition)
     {
         BaseBullet bullet = null;
 
@@ -35,6 +35,7 @@ public class BulletFactory
      
         //加入子弹列表
         GameData.g_listBullet.Add(bullet);
+        return bullet;
     }
 
     //- 移除子弹

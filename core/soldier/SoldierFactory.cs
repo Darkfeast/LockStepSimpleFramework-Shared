@@ -15,7 +15,7 @@ public class SoldierFactory
 	//- 创建士兵
     // 
     // @return 创建出的士兵.
-    public void createSoldier() {
+    public BaseSoldier createSoldier() {
         BaseSoldier soldier = new Grizzly();
         soldier.Create("grizzly");
   
@@ -25,5 +25,6 @@ public class SoldierFactory
         soldier.Init(origin,end,(Fix64)moveTime);
         
         GameData.g_listSoldier.Add(soldier);
+        return soldier;
     }
 }

@@ -201,8 +201,8 @@ public class BattleLogic
         for (int i = 0; i < 5; i++)
         {
             var tower = GameData.g_towerFactory.createTower();
-            tower.m_fixv3LogicPosition = new FixVector3((Fix64)5, (Fix64)1.3f, (Fix64)(-3.0f) + (Fix64)2.5f * i);
-            tower.updateRenderPosition(0);
+            FixVector3 pos = new FixVector3((Fix64)5, (Fix64)1.3f, (Fix64)(-3.0f) + (Fix64)2.5f * i);
+            tower.Init(pos);
         }
     }
 

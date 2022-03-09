@@ -248,7 +248,7 @@ public class LiveObject : BaseObject
         if (false == m_bKilled)
         {
             //播放被攻击的动画
-            DF.Log($"beDamage liveObject  {m_scType}" );
+            // DF.Log($"beDamage liveObject  {m_scType}" );
             if (m_scType == "tower")
             {
                 //DF 如果自身类型是塔，播放被击动画？ 

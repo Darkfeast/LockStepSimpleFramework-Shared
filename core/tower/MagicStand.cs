@@ -51,4 +51,10 @@ public class MagicStand : BaseTower
         attackRange = (Fix64)6 + GameData.g_srand.Range(1, 3);
         attackSpeed = (Fix64)1;
     }
+
+    public override void Init(FixVector3 pos)
+    {
+        m_fixv3LogicPosition = pos;
+        updateRenderPosition(0);
+    }
 }

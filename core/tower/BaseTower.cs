@@ -72,5 +72,10 @@ public class BaseTower : LiveObject
     public override void checkStatue()
     {
         checkSoldierOutRange();
-    } 
+    }
+
+    public virtual void Init(FixVector3 pos)
+    {
+        
+    }
 }
