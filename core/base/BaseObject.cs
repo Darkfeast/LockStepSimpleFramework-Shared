@@ -224,7 +224,7 @@ public class BaseObject : UnityObject
     //
     // @param position 要设置到的位置
     // @return none
-    virtual public void setPosition(FixVector3 position)
+    public virtual void setPosition(FixVector3 position)
     {
         m_fixv3LogicPosition = position;
     }

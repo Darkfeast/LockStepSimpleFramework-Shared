@@ -6,12 +6,14 @@
 // 
 // 
 //
+
 using System.Collections;
 using System.Collections.Generic;
 
-public class BaseBullet : BaseObject {
+public class BaseBullet : BaseObject
+{
     LiveObject m_src = null;
-    protected LiveObject m_dest = null;
+    protected LiveObject m_dest = null; //目标
     protected FixVector3 m_fixv3SrcPosition = new FixVector3();
     protected FixVector3 m_fixv3DestPosition = new FixVector3();
     protected Fix64 m_fixDamage = Fix64.Zero;
@@ -19,7 +21,8 @@ public class BaseBullet : BaseObject {
     //- 每帧循环
     // 
     // @return none
-    virtual public void updateLogic() {
+    public virtual void updateLogic()
+    {
         checkEvent();
     }
 
@@ -30,7 +33,8 @@ public class BaseBullet : BaseObject {
     // @param poOri 发射的起始位置
     // @param poDst 发射的目标位置
     // @return none.
-    virtual public void initData(LiveObject src1, LiveObject dest1, FixVector3 poOri, FixVector3 poDst) {
+    public virtual void initData(LiveObject src1, LiveObject dest1, FixVector3 poOri, FixVector3 poDst)
+    {
         m_scType = "bullet";
 
         loadProperties();
@@ -48,17 +52,18 @@ public class BaseBullet : BaseObject {
     //- 射击
     // 
     // @return none.
-    virtual public void shoot() {
-
-
+    public virtual void shoot()
+    {
     }
 
     //- 攻击目标对象
     // 
     // @return none.
-    virtual public void doShootDest() {
+    public virtual void doShootDest()
+    {
         //目标被扣血
-        if (false == m_bUneffect) {
+        if (false == m_bUneffect)
+        {
             removeFromDestBulletList();
 
             m_dest.beDamage(m_fixDamage);
@@ -70,7 +75,8 @@ public class BaseBullet : BaseObject {
     //- 从攻击者的子弹列表中移除自身
     // 避免被攻击者已经死了子弹还在攻击的问题
     // @return none
-    protected void removeFromDestBulletList() {
+    protected void removeFromDestBulletList()
+    {
         List<BaseObject> list = m_dest.m_listAttackMeBullet;
         list.Remove(this);
     }
@@ -79,16 +85,15 @@ public class BaseBullet : BaseObject {
     // 
     // @param id 类型id
     // @return none
-    virtual public void loadProperties() {
-
-        
+    public virtual void loadProperties()
+    {
     }
 
     //- 根据名字加载预制体
     // 
     // @param name 子弹的名字
     // @return none
-    virtual public void createBody(string name) {
-
+    public virtual void createBody(string name)
+    {
     }
 }

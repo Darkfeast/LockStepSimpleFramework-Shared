@@ -38,7 +38,7 @@ public class BaseSoldier : LiveObject
     //- 每帧循环
     // 
     // @return none
-    virtual public void updateLogic(){
+    public virtual void updateLogic(){
         m_statemachine.updateLogic();
 
         checkIsDead();

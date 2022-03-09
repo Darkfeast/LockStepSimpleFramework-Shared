@@ -20,7 +20,7 @@ public class BattleLogic
 	string battleRecord = "";
 
 	//游戏逻辑帧
-	static public int s_uGameLogicFrame = 0;
+	public static int s_uGameLogicFrame = 0;
 
     //是否已开战
     private bool m_bFireWar = false;

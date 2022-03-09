@@ -23,7 +23,7 @@ public class BaseState
     // 
     // @param args 附加的创建信息
     // @return none
-    virtual public void onInit(LiveObject args) {
+    public virtual void onInit(LiveObject args) {
 
     }
 
@@ -31,7 +31,7 @@ public class BaseState
     // 
     // @param args 附加的调用信息
     // @return none
-    virtual public void onEnter(Fix64 args)
+    public virtual void onEnter(Fix64 args)
     {
 
     }
@@ -39,7 +39,7 @@ public class BaseState
     //- 退出该状态时调用的函数
     // 
     // @return none
-    virtual public void onExit()
+    public virtual void onExit()
     {
 
     }
@@ -47,7 +47,7 @@ public class BaseState
     //- 处于该状态时每帧调用的函数
     // 
     // @return none
-    virtual public void updateLogic()
+    public virtual void updateLogic()
     {
 
     }

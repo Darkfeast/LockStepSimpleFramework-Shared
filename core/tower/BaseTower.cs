@@ -30,7 +30,7 @@ public class BaseTower : LiveObject
     //- 每帧循环
     // 
     // @return none
-    virtual public void updateLogic() {
+    public virtual void updateLogic() {
         //状态机
         m_statemachine.updateLogic();
 
