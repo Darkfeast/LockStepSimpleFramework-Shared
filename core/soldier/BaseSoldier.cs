@@ -51,4 +51,14 @@ public class BaseSoldier : LiveObject
     public override void checkStatue(){
         
     }
+
+    public virtual void Create(string nameValue)
+    {
+        
+    }
+
+    public virtual void Init(FixVector3 origin,FixVector3 end, Fix64 moveTime,ActionCallback act=null)
+    {
+        
+    }
 }

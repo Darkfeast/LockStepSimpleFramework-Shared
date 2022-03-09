@@ -250,7 +250,7 @@ public class BaseObject : UnityObject
             m_statemachine.exitOldState();
         }
 
-        m_bKilled = true;
+        m_bKilled = true;  //这里是主动自杀 表示可以被销毁，另一种是 角色血量为0 或者子弹造成伤害后  标记为m_bKilled=true
 
         checkEvent();
     }
@@ -267,6 +267,7 @@ public class BaseObject : UnityObject
     // @return none.
     public void recordLastPos()
     {
+        //将这一逻辑帧 的逻辑位置 更新给 最后一次移动位置   因为上面已经插值过逻辑位置了，所以逻辑位置已经不是最新的  而是最后一次（上一次）的移动位置
         m_fixv3LastPosition = m_fixv3LogicPosition;
     }
 }

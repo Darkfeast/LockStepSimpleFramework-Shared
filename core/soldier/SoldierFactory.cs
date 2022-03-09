@@ -7,6 +7,7 @@
 // 
 //
 using System.Collections;
+using UnityEngine.XR.WSA.Input;
 
 public class SoldierFactory
 {
@@ -14,16 +15,15 @@ public class SoldierFactory
 	//- 创建士兵
     // 
     // @return 创建出的士兵.
-    public BaseSoldier createSoldier() {
-        BaseSoldier soldier;
-
-        soldier = new Grizzly();
-
+    public void createSoldier() {
+        BaseSoldier soldier = new Grizzly();
+        soldier.Create("grizzly");
+  
+        FixVector3 origin = new FixVector3((Fix64)0, (Fix64)1, (Fix64)(-4.0f));
+        FixVector3 end = new FixVector3(origin.x, origin.y, (Fix64) 8);
+        float moveTime = 3 + GameData.g_srand.Range(0, 3);
+        soldier.Init(origin,end,(Fix64)moveTime);
+        
         GameData.g_listSoldier.Add(soldier);
-
-        //立即记录最后的位置,否则通过vector3.lerp来进行移动动画时会出现画面抖动的bug
-        soldier.recordLastPos();
-
-        return soldier;
     }
 }

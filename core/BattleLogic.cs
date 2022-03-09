@@ -213,13 +213,7 @@ public class BattleLogic
     public void createSoldier()
     {
         m_bFireWar = true;
-
-        var soldier = GameData.g_soldierFactory.createSoldier();
-        soldier.m_fixv3LogicPosition = new FixVector3((Fix64)0, (Fix64)1, (Fix64)(-4.0f));
-        soldier.updateRenderPosition(0);
-
-        float moveSpeed = 3 + GameData.g_srand.Range(0, 3);
-        soldier.moveTo(soldier.m_fixv3LogicPosition, new FixVector3(soldier.m_fixv3LogicPosition.x, soldier.m_fixv3LogicPosition.y, (Fix64)8), (Fix64)moveSpeed);
+        GameData.g_soldierFactory.createSoldier();
 
         //记录关键事件
         if (!GameData.g_bRplayMode)

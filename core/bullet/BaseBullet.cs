@@ -49,13 +49,6 @@ public class BaseBullet : BaseObject
         m_dest.addAttackMeBulletObj(this);
     }
 
-    //- 射击
-    // 
-    // @return none.
-    public virtual void shoot()
-    {
-    }
-
     //- 攻击目标对象
     // 
     // @return none.
