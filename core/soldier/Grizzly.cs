@@ -26,22 +26,6 @@ public class Grizzly : BaseSoldier
         base.updateLogic();
     }
 
-    //- 加载属性
-    // 
-    // @return none
-    public override void loadProperties()
-    {
-        setHp((Fix64) 200);
-    }
-
-    public override void Create(string nameValue)
-    {
-        //设置类型
-        m_scName = nameValue;
-        loadProperties();
-        createFromPrefab("Prefabs/Soldier", this);
-    }
-
     public override void Init(FixVector3 origin, FixVector3 end, Fix64 moveTime, ActionCallback act)
     {
         m_fixv3LogicPosition = origin;
@@ -49,5 +33,21 @@ public class Grizzly : BaseSoldier
         //立即记录最后的位置,否则通过vector3.lerp来进行移动动画时会出现画面抖动的bug
         recordLastPos();
         moveTo(m_fixv3LogicPosition, end, moveTime);
+    }
+    
+    public override void Create(string nameValue)
+    {
+        //设置具体的名字
+        m_scName = nameValue;
+        createFromPrefab("Prefabs/Soldier", this);
+        loadProperties();
+    }
+    
+    //- 加载属性
+    // 
+    // @return none
+    public override void loadProperties()
+    {
+        setHp((Fix64) 200);
     }
 }

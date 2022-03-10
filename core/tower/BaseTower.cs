@@ -12,11 +12,6 @@ public class BaseTower : LiveObject
 {
     public BaseTower()
     {
-        init();
-    }
-
-    void init()
-    {
         //设置类型为塔
         m_scType = "tower";
 
@@ -26,7 +21,7 @@ public class BaseTower : LiveObject
         //设置起作用的单元主体
         m_statemachine.setUnit(this);
     }
-
+    
     //- 每帧循环
     // 
     // @return none
@@ -74,8 +69,18 @@ public class BaseTower : LiveObject
         checkSoldierOutRange();
     }
 
-    public virtual void Init(FixVector3 pos)
+
+    public virtual void Create(string nameValue)
     {
         
+    }
+
+    //Init 不一定要在工厂里调用
+    //因为有的时候 需要传顺序参数 (批量创建很多个对象，根据顺序设置位置
+    //工厂的创作方法可以返回创造的对象  这样就不需要增加传入的方法参数
+    //在外部可以调用Init初始化数据
+    public virtual void Init(FixVector3 pos)
+    {
+            
     }
 }

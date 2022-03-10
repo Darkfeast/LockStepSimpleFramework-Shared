@@ -42,7 +42,7 @@ public class UnityObject
 {
     public string m_scBundle = "";
     public string m_scAsset = "";
-    public string m_scType = ""; // 塔  士兵  子弹
+    public string m_scType = ""; // 塔  士兵  子弹 大的分类
 
     //是否被杀掉了
     public bool m_bKilled = false;  //是否被销毁  士兵死亡  或者 子弹攻击后  将被设为true

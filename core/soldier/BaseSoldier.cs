@@ -12,11 +12,6 @@ public class BaseSoldier : LiveObject
 {
     public BaseSoldier()
     {
-        init();
-    }
-
-    void init()
-    {
         //设置类型
         m_scType = "soldier";
 

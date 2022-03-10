@@ -18,6 +18,10 @@ public class BaseBullet : BaseObject
     protected FixVector3 m_fixv3DestPosition = new FixVector3();
     protected Fix64 m_fixDamage = Fix64.Zero;
 
+    public BaseBullet()
+    {
+        m_scType = "bullet";
+    }
     //- 每帧循环
     // 
     // @return none
@@ -33,12 +37,8 @@ public class BaseBullet : BaseObject
     // @param poOri 发射的起始位置
     // @param poDst 发射的目标位置
     // @return none.
-    public virtual void initData(LiveObject src1, LiveObject dest1, FixVector3 poOri, FixVector3 poDst)
+    public virtual void Init(LiveObject src1, LiveObject dest1, FixVector3 poOri, FixVector3 poDst)
     {
-        m_scType = "bullet";
-
-        loadProperties();
-
         m_src = src1;
         m_dest = dest1;
         m_fixv3SrcPosition = poOri;
@@ -86,7 +86,7 @@ public class BaseBullet : BaseObject
     // 
     // @param name 子弹的名字
     // @return none
-    public virtual void createBody(string name)
+    public virtual void Create(string name)
     {
     }
 }

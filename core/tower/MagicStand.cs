@@ -12,25 +12,7 @@ public class MagicStand : BaseTower
 {
     public MagicStand()
     {
-        init();
-    }
-
-    //- 初始化
-    // 
-    // @param self 
-    // @return none
-    void init()
-    {
-        loadProperties();
-
-        //每个塔加载的资源不同,所以单独处理
-        createFromPrefab("Prefabs/Tower", this);
-
-        //调用父类的构造函数
-        //self[BASETOWER]:init(self)
-
-        //设置名字为魔法塔
-        m_scName = "magicstand";
+        changeState("towerstand");
     }
 
     //- 每帧循环
@@ -50,6 +32,16 @@ public class MagicStand : BaseTower
         setDamageValue((Fix64)50);
         attackRange = (Fix64)6 + GameData.g_srand.Range(1, 3);
         attackSpeed = (Fix64)1;
+    }
+
+    public override void Create(string nameValue)
+    {
+        //每个塔加载的资源不同,所以单独处理
+        //设置名字为魔法塔
+        // m_scName = "magicstand";
+        m_scName = nameValue;
+        createFromPrefab("Prefabs/Tower", this);
+        loadProperties();
     }
 
     public override void Init(FixVector3 pos)

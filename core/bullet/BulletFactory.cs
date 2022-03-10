@@ -29,9 +29,8 @@ public class BulletFactory
         bullet = new DirectionShootBullet();
 
         //根据名字加载资源
-        bullet.createBody(m_scBulletName);
-
-        bullet.initData(src, dest, poShootStartPosition, poShootEndPosition);
+        bullet.Create(m_scBulletName);
+        bullet.Init(src, dest, poShootStartPosition, poShootEndPosition);
      
         //加入子弹列表
         GameData.g_listBullet.Add(bullet);

@@ -19,8 +19,7 @@ public class TowerFactory
     public BaseTower createTower() {
         BaseTower tower = new MagicStand();
 
-        tower.changeState("towerstand");
-
+        tower.Create("name");
         GameData.g_listTower.Add(tower);
 
         return tower;
