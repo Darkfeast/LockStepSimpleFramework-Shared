@@ -20,6 +20,7 @@ public class DF
     public static bool isRecord = false;
     public static bool isPrint = true;
 
+#if _CLIENTLOGIC_
     public static void Log(object str, E_ColorType c = E_ColorType.Normal)
     {
         string formatStr = "";
@@ -28,44 +29,32 @@ public class DF
         if (c == E_ColorType.Init)
         {
             formatStr = "<color=cyan>" + str + "</color>";
-#if _CLIENTLOGIC_
             Debug.Log(formatStr);
-#endif
         }
         else if (c == E_ColorType.Normal)
         {
             formatStr = "<color=#00c0ff>" + str + "</color>";
-#if _CLIENTLOGIC_
             Debug.Log(formatStr);
-#endif
         }
         else if (c == E_ColorType.UI) //#00FF21a0
         {
             formatStr = "<color=#91EC17>>>>>>>> " + str + "  -----------------</color>";
-#if _CLIENTLOGIC_
             Debug.Log(formatStr);
-#endif
         }
         else if (c == E_ColorType.Temp)
         {
             formatStr = "<color=magenta>>>>>>>> " + str + "  -----------------</color>";
-#if _CLIENTLOGIC_
             Debug.Log(formatStr);
-#endif
         }
         else if (c == E_ColorType.Err)
         {
             formatStr = "<color=#C94A4A>---------err--" + str + "</color>"; //FF0000  C94A4A
-#if _CLIENTLOGIC_
             Debug.Log(formatStr);
-#endif
         }
         else if (c == E_ColorType.Over)
         {
             formatStr = "<color=#FFA662> =====" + str + "=====</color>";
-#if _CLIENTLOGIC_
             Debug.Log(formatStr); //2F5283   
-#endif
         }
 
         if (isRecord)
@@ -79,7 +68,6 @@ public class DF
         return str;
     }
 
-#if UNITY_EDITOR
     public static void DrawLineY(float y, float t = 30, float disX = 1000)
     {
         Debug.DrawLine(new Vector3(-disX, y, 0), new Vector3(disX, y, 0), Color.cyan, t);
