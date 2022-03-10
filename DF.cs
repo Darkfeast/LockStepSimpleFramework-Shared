@@ -1,10 +1,8 @@
 #if _CLIENTLOGIC_
 using UnityEngine;
-using System.Text;
-
-#else
-using System;
 #endif
+using System.Text;
+using System;
 
 public enum E_ColorType
 {

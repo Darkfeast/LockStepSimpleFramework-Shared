@@ -7,7 +7,6 @@
 // 
 //
 using System.Collections;
-using UnityEngine.XR.WSA.Input;
 
 public class SoldierFactory
 {
